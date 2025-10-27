@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Thiệp mời — Lê Thị Kiều Trang</title>
+<meta name="theme-color" content="#ffd6e7">
+<style>
+  :root{
+    --bg:#111325;
+    --grad1:#ffb3de;
+    --grad2:#b5c7ff;
+    --grad3:#ffe08a;
+    --card: rgba(255,255,255,0.08);
+    --text:#ffffff;
+    --muted:rgba(255,255,255,0.82);
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%;margin:0;font-family:ui-rounded, system-ui, -apple-system, Segoe UI, Roboto, 'Helvetica Neue', Arial; color:var(--text); background:
+    radial-gradient(1800px 1000px at -10% -10%, rgba(255,179,222,0.18), transparent 60%),
+    radial-gradient(1800px 1000px at 110% -10%, rgba(181,199,255,0.16), transparent 60%),
+    linear-gradient(180deg, #0b0e1e 0%, var(--bg) 60%);
+    overflow-x:hidden;
+  }
+  .wrap{max-width:780px;margin:0 auto;padding:18px}
+  .card{
+    background:linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+    border:1px solid rgba(255,255,255,0.06); border-radius:18px; padding:16px;
+    box-shadow:0 18px 50px rgba(0,0,0,0.35); position:relative; overflow:hidden;
+  }
+  .top{display:flex; align-items:center; gap:14px}
+  .logo{
+    width:64px;height:64px;border-radius:16px;
+    background:conic-gradient(from 120deg, var(--grad1), var(--grad2), var(--grad3), var(--grad1));
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 10px 30px rgba(255,179,222,0.25);
+    transform:rotate(-6deg);
+  }
+  .logo span{font-weight:800;font-size:24px;color:#1b1b1b}
+  .title h1{margin:0;font-size:20px;letter-spacing:.2px}
+  .title p{margin:4px 0 0;color:var(--muted);font-size:14px}
+
+  .hero{margin:14px 0 0; background:linear-gradient(135deg, rgba(255,179,222,0.25), rgba(181,199,255,0.22));
+    border-radius:16px; padding:16px; text-align:center; position:relative;}
+  .hero h2{margin:6px 0 8px 0;font-size:22px}
+  .hero p{margin:0;color:var(--muted)}
+  .chip{display:inline-flex; gap:8px; align-items:center; padding:8px 12px; border-radius:999px;
+    background:rgba(255,255,255,0.1); font-weight:700; margin:6px 0 10px 0;}
+
+  .balloon{position:absolute; bottom:-80px; width:34px; height:44px; border-radius:50% 50% 45% 45%;
+    background:var(--grad1); box-shadow:0 6px 18px rgba(255,179,222,0.35); animation:float 9s linear infinite;}
+  .balloon::after{content:""; position:absolute; left:50%; top:42px; transform:translateX(-50%); width:2px; height:80px; background:rgba(255,255,255,0.4);}
+  .balloon.b2{left:22%; background:var(--grad2); animation-duration:10s;}
+  .balloon.b3{left:68%; background:var(--grad3); animation-duration:8.5s;}
+  @keyframes float{
+    0%{transform:translateY(0) translateX(0) scale(1)}
+    50%{transform:translateY(-140px) translateX(-8px) scale(1.04)}
+    100%{transform:translateY(-280px) translateX(8px) scale(1)}
+  }
+
+  .msg{margin:14px 0 0; padding:14px; border-radius:14px;
+    background:linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));}
+  .msg h3{margin:0 0 6px 0}
+  .actions{display:flex; gap:10px; flex-wrap:wrap; margin-top:8px}
+  .btn{padding:10px 14px; border-radius:12px; border:1px solid rgba(255,255,255,0.08);
+    background:linear-gradient(180deg, #232845, #1a1e34); color:#fff; cursor:pointer;}
+  .btn.primary{background:linear-gradient(90deg, var(--grad1), var(--grad2)); color:#111; font-weight:800; border:none;}
+
+  .info{margin-top:14px; display:grid; grid-template-columns:1fr; gap:10px}
+  .ibox{background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.06);
+    padding:12px; border-radius:12px;}
+  .ibox b{display:block; font-size:12px; opacity:.85; margin-bottom:4px; color:#ffe9f5}
+  .ibox span{font-size:16px}
+
+  .rsvp{margin-top:14px; background:rgba(255,255,255,0.06); border-radius:12px; padding:12px}
+  label{font-size:13px; opacity:.86}
+  input, select, textarea{width:100%; padding:10px; border-radius:10px; border:1px solid rgba(255,255,255,0.08);
+    background:transparent; color:#fff; outline:none; margin-top:6px;}
+  textarea{min-height:80px}
+
+  canvas#confetti{position:fixed; left:0; top:0; width:100vw; height:100vh; pointer-events:none; z-index:0}
+  footer{margin:14px 0 0; text-align:center; opacity:.75; font-size:13px}
+
+  @media (min-width:720px){
+    .title h1{font-size:22px}
+    .hero h2{font-size:24px}
+    .info{grid-template-columns:repeat(3,1fr)}
+  }
+</style>
+</head>
+<body>
+<canvas id="confetti"></canvas>
+<div class="wrap">
+  <div class="card" role="main" aria-labelledby="invTitle">
+    <div class="top">
+      <div class="logo"><span>BD</span></div>
+      <div class="title">
+        <h1 id="invTitle">Thiệp mời cho <strong>Lê Thị Kiều Trang</strong> 🌸</h1>
+        <p>Chủ tiệc: <strong>Phạm Thanh Thái</strong> & <strong>Nguyễn Thị Phương Nga</strong></p>
+      </div>
+    </div>
+
+    <div class="hero">
+      <div class="chip">🎉 Cute Cartoon Party</div>
+      <h2>“Mời bạn đến dự sinh nhật của chúng tôi”</h2>
+      <p>Rất mong Trang đến chung vui cùng bọn mình! 🥳</p>
+      <div class="balloon b1" style="left:8%"></div>
+      <div class="balloon b2"></div>
+      <div class="balloon b3"></div>
+    </div>
+
+    <div class="info">
+      <div class="ibox"><b>Ngày</b><span>06/11/2025</span></div>
+      <div class="ibox"><b>Giờ</b><span>12:00 PM</span></div>
+      <div class="ibox"><b>Địa điểm</b><span>Manwah – 217 Trích Sài</span></div>
+    </div>
+
+    <div class="msg">
+      <h3>Chi tiết & Tác vụ</h3>
+      <p class="muted">Nhấn nút bên dưới để bật nhạc & pháo giấy. Gửi RSVP để mình biết bạn có đến được không nhé!</p>
+      <div class="actions">
+        <button class="btn primary" id="playBtn">▶ Bật nhạc & Confetti</button>
+        <button class="btn" id="moreConfetti">🎊 Thêm pháo giấy</button>
+      </div>
+    </div>
+
+    <div class="rsvp">
+      <form id="rsvpForm">
+        <label for="attend">Bạn có tham dự không?</label>
+        <select id="attend">
+          <option value="yes">Có — mình sẽ đến</option>
+          <option value="maybe">Có thể</option>
+          <option value="no">Không — gửi lời chúc</option>
+        </select>
+
+        <label for="note">Lời nhắn (tuỳ chọn)</label>
+        <textarea id="note" placeholder="Viết lời nhắn cho chủ tiệc..."></textarea>
+
+        <button class="btn primary" type="submit" style="margin-top:8px">Gửi RSVP</button>
+        <p id="saveNotice" style="opacity:.8; font-size:13px; margin:6px 0 0">RSVP sẽ được lưu tạm trên thiết bị của bạn.</p>
+      </form>
+    </div>
+
+    <footer>Hẹn gặp Trang tại bữa tiệc! 🎈</footer>
+  </div>
+</div>
+
+<script>
+/* Confetti */
+const cv = document.getElementById('confetti');
+const cx = cv.getContext('2d');
+let W = cv.width = innerWidth, H = cv.height = innerHeight;
+addEventListener('resize', ()=>{ W=cv.width=innerWidth; H=cv.height=innerHeight; });
+const colors = ['#ffb3de','#b5c7ff','#ffe08a','#9bf0ff','#c7ffb5'];
+let pieces=[];
+function R(a,b){return Math.random()*(b-a)+a}
+function spawn(n=120){ for(let i=0;i<n;i++){ pieces.push({
+  x:R(0,W), y:R(-H,0), w:R(6,12), h:R(8,18),
+  vx:R(-1.2,1.2), vy:R(1.2,3.2), r:R(0,Math.PI*2), vr:R(-0.08,0.08),
+  c: colors[(Math.random()*colors.length)|0]
+});}}
+function tick(){
+  cx.clearRect(0,0,W,H);
+  for(const p of pieces){
+    p.x+=p.vx; p.y+=p.vy; p.r+=p.vr; p.vy+=0.015;
+    cx.save(); cx.translate(p.x,p.y); cx.rotate(p.r);
+    cx.fillStyle=p.c; cx.fillRect(-p.w/2,-p.h/2,p.w,p.h); cx.restore();
+  }
+  pieces = pieces.filter(p=>p.y<H+60);
+  requestAnimationFrame(tick);
+}
+spawn(140); tick();
+
+/* Melody */
+let actx;
+function play(){
+  if(!actx) actx = new (window.AudioContext||window.webkitAudioContext)();
+  const seq=[659,784,0,880,0,988,880,784,0,740];
+  let t=actx.currentTime;
+  for(const f of seq){
+    if(f>0){
+      const o=actx.createOscillator(), g=actx.createGain();
+      o.type='sine'; o.frequency.value=f; g.gain.value=0.0001;
+      o.connect(g); g.connect(actx.destination);
+      o.start(t); g.gain.linearRampToValueAtTime(0.12,t+0.02);
+      g.gain.exponentialRampToValueAtTime(0.001,t+0.35); o.stop(t+0.36);
+    }
+    t+=0.36;
+  }
+}
+document.getElementById('playBtn').onclick = ()=>{ play(); spawn(200); };
+document.getElementById('moreConfetti').onclick = ()=> spawn(160);
+
+/* RSVP local */
+const KEY='rsvp_trang_v2';
+document.getElementById('rsvpForm').addEventListener('submit', e=>{
+  e.preventDefault();
+  const attend = document.getElementById('attend').value;
+  const note = document.getElementById('note').value.trim();
+  const store = JSON.parse(localStorage.getItem(KEY)||'[]');
+  store.push({guest:'Lê Thị Kiều Trang', attend, note, ts:Date.now()});
+  localStorage.setItem(KEY, JSON.stringify(store));
+  document.getElementById('saveNotice').textContent = 'Cảm ơn Trang! RSVP đã được lưu trên thiết bị này. Tổng: '+store.length;
+  e.target.reset();
+});
+</script>
+</body>
+</html>
